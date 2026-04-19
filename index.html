@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P & P HVAC - Your Home Comfort Wizards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-background-primary); }
+        header { background: #1a1a1a; border-bottom: 2px solid #534AB7; padding: 1rem 0; position: sticky; top: 0; z-index: 10; }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 40px; height: 40px; background: #534AB7; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: white; font-size: 20px; }
+        .logo-text { color: white; font-size: 18px; font-weight: 500; }
+        .logo-tagline { color: #AFA9EC; font-size: 12px; margin-top: 2px; }
+        nav { display: flex; gap: 2rem; }
+        nav a { text-decoration: none; color: #E6F1FB; font-size: 14px; transition: color 0.2s; }
+        nav a:hover { color: #7F77DD; }
+        .hero { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d4a 100%); padding: 3.5rem 1.5rem; text-align: center; }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 36px; font-weight: 500; margin-bottom: 0.5rem; color: white; }
+        .tagline { font-size: 18px; color: #AFA9EC; margin-bottom: 1.5rem; }
+        .rating-badge { display: inline-block; background: #534AB7; color: white; padding: 0.5rem 1.25rem; border-radius: 24px; font-size: 14px; margin-bottom: 1.5rem; }
+        .cta-button { display: inline-block; background: #534AB7; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 500; border: none; cursor: pointer; font-size: 16px; transition: all 0.2s; }
+        .cta-button:hover { background: #7F77DD; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(83, 74, 183, 0.3); }
+        .section { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .section-title { font-size: 28px; font-weight: 500; margin-bottom: 2rem; color: #1a1a1a; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .service-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem; transition: all 0.2s; }
+        .service-card:hover { border-color: #534AB7; box-shadow: 0 4px 12px rgba(83, 74, 183, 0.15); }
+        .service-icon { width: 40px; height: 40px; background: #EEEDFE; color: #534AB7; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; font-weight: 600; }
+        .service-card h3 { font-size: 18px; font-weight: 500; margin-bottom: 0.75rem; color: #1a1a1a; }
+        .service-card p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+        .about-section { background: #f5f5f5; }
+        .about-content { max-width: 1000px; margin: 0 auto; }
+        .about-content p { font-size: 16px; color: #1a1a1a; line-height: 1.7; margin-bottom: 1rem; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .stat { background: white; padding: 1.5rem; border-radius: var(--border-radius-lg); border: 1px solid #e0e0e0; text-align: center; }
+        .stat-number { font-size: 28px; font-weight: 500; color: #534AB7; }
+        .stat-label { font-size: 14px; color: var(--color-text-secondary); margin-top: 0.5rem; }
+        .reviews-section { }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .review-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.5rem; }
+        .review-card:hover { border-color: #534AB7; }
+        .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+        .reviewer-avatar { width: 44px; height: 44px; border-radius: 50%; background: #534AB7; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500; font-size: 16px; }
+        .review-info { }
+        .reviewer-name { font-weight: 500; font-size: 15px; margin-bottom: 2px; color: #1a1a1a; }
+        .stars { color: #FBC02D; font-size: 14px; }
+        .review-text { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+        .contact-section { background: #f5f5f5; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .contact-box { background: white; padding: 1.5rem; border-radius: var(--border-radius-lg); border: 1px solid #e0e0e0; }
+        .contact-box h4 { font-size: 16px; font-weight: 500; color: #534AB7; margin-bottom: 0.75rem; }
+        .contact-box p { font-size: 14px; color: var(--color-text-secondary); }
+        .contact-box .highlight { color: #1a1a1a; font-weight: 500; margin-top: 0.5rem; }
+        footer { background: #1a1a1a; color: #b0b0b0; padding: 2rem 1.5rem; text-align: center; font-size: 14px; border-top: 2px solid #534AB7; }
+        @media (max-width: 768px) {
+            nav { gap: 1rem; font-size: 12px; }
+            h1 { font-size: 28px; }
+            .tagline { font-size: 16px; }
+            .section-title { font-size: 22px; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">⚙️</div>
+                <div>
+                    <div class="logo-text">P & P HVAC</div>
+                    <div class="logo-tagline">Your Home Comfort Wizards</div>
+                </div>
+            </div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Expert HVAC Solutions in Ottawa</h1>
+            <p class="tagline">24/7 emergency service • Residential & commercial</p>
+            <div class="rating-badge">⭐ 4.9 out of 5 (65 reviews)</div>
+            <button class="cta-button" onclick="sendPrompt('I need HVAC service right now')">Request Service Today</button>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Furnace Repair & Installation</h3>
+                <p>Expert diagnosis and repair of furnace problems. Professional installation of new high-efficiency systems for maximum warmth and comfort.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">❄️</div>
+                <h3>AC Installation & Repair</h3>
+                <p>Complete air conditioning solutions from repair to full system replacement. We work with top brands to keep your home cool all summer long.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💧</div>
+                <h3>Hot Water Tanks & Heaters</h3>
+                <p>Service and installation of traditional hot water tanks, tankless water heaters, and boilers. Reliable hot water when you need it.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌡️</div>
+                <h3>Heat Pumps</h3>
+                <p>Energy-efficient heat pump installation and maintenance. Keep your home comfortable year-round while reducing energy costs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💨</div>
+                <h3>Humidifiers & Air Quality</h3>
+                <p>Improve your indoor air quality with professional humidifier installation and air filtration systems for healthier breathing.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Radiant Flooring & Snowmelt</h3>
+                <p>Comfortable radiant floor heating installation and snowmelt systems for driveways and walkways. Modern comfort for your home.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Gas Lines & Dryers</h3>
+                <p>Safe installation and repair of gas lines and gas dryer connections. All work meets current safety codes and standards.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🕐</div>
+                <h3>24/7 Emergency Service</h3>
+                <p>Available any time, day or night. When your heating fails in winter, we're here to help immediately with rapid response.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section" id="about">
+        <div class="about-content">
+            <h2 class="section-title">Why Choose P & P HVAC</h2>
+            <p>P & P HVAC offers high-quality HVAC services throughout Ottawa, specializing in furnace repair, AC installation, hot water tanks, tankless water heaters, boilers, heat pumps, and humidifiers. We carry only the best brands to ensure top-notch performance and reliability.</p>
+            <p>Serving both residential and small commercial clients, we provide reliable, cost-effective solutions for repairs, installations, and maintenance. Our certified technicians are professional, courteous, and dedicated to getting your home comfortable again—fast.</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">65+</div>
+                    <div class="stat-label">5-star reviews</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Average rating</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Always available</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Ottawa</div>
+                    <div class="stat-label">Local experts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reviews-section" id="reviews">
+        <h2 class="section-title">Customer Reviews</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">MK</div>
+                    <div class="review-info">
+                        <div class="reviewer-name">Melkon Kechichian</div>
+                        <div class="stars">★★★★★ 5 months ago</div>
+                    </div>
+                </div>
+                <div class="review-text">"I recently had an outstanding experience with P&P HVAC thanks to Sam and Alex! When my heating system failed at the restaurant and my house in the same 2 days, they responded promptly. To my relief, they were able to identify the problem. The quality of service provided by Sam and Steve was exceptional, and they were professional and courteous throughout the entire process."</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">DW</div>
+                    <div class="review-info">
+                        <div class="reviewer-name">Dave Waltham</div>
+                        <div class="stars">★★★★★ 7 months ago</div>
+                    </div>
+                </div>
+                <div class="review-text">"We had an issue with our old central air conditioner. We called P&P HVAC to come check it out. We had some cold air, but not how it should be. I told them no rush as we were in the middle of several weeks of extreme heat. They came the very next morning. They quickly accessed the issue. The issue would be an expensive fix."</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">SA</div>
+                    <div class="review-info">
+                        <div class="reviewer-name">Sarah Anderson</div>
+                        <div class="stars">★★★★★ 3 months ago</div>
+                    </div>
+                </div>
+                <div class="review-text">"Best HVAC service in Ottawa! The team went above and beyond to fix our heating during the coldest week of winter. They explained everything clearly, worked efficiently, and didn't overcharge. Customer service is truly outstanding. Thank you P&P!"</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-box">
+                <h4>Call Us</h4>
+                <p>For immediate assistance or to schedule an appointment</p>
+                <p class="highlight">+1-613-317-8999</p>
+            </div>
+            <div class="contact-box">
+                <h4>Visit Us</h4>
+                <p>1547 Sequoia Drive<br>Cumberland, ON K4C 1C2<br>Canada</p>
+            </div>
+            <div class="contact-box">
+                <h4>Hours</h4>
+                <p>We're available 24 hours a day, 7 days a week for emergency service and appointments</p>
+                <p class="highlight">Open 24/7</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 P & P HVAC. Your Home Comfort Wizards. All rights reserved. Serving Ottawa with professional HVAC solutions.</p>
+    </footer>
+</body>
+</html>
